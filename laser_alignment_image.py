@@ -22,7 +22,7 @@ while True:
     cv2.line(image, (0, 360), (1280, 360), (0, 150, 150), 1)
 
     for i in range(50, 1300, 50):
-        cv2.line(image, (i, 0), (i, 720), (0, 255, 0), 8)
+        cv2.line(image, (i, 0), (i, 720), (0, 255, 0), 3)
 
     # then write annotated frame to file
     out.write(image)
