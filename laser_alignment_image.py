@@ -5,6 +5,8 @@ import time
 camera = Picamera2()
 config = camera.create_video_configuration(main={"format": "BGR888", "size": (1280, 720)})
 camera.configure(config)
+camera.start()
+time.sleep(1)
 
 camera.set_controls({
     "AwbEnable": False,
@@ -13,10 +15,9 @@ camera.set_controls({
     "AnalogueGain": 4.0
 })
 
-camera.start()
 time.sleep(1)
 
-print("Recording... press 'q' to stop")
+print("Press 'q' to stop")
 
 while True:
     image = camera.capture_array()
