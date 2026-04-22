@@ -3,7 +3,7 @@ import cv2
 import time
 
 camera = Picamera2()
-config = camera.create_video_configuration(main={"format": "BGR888", "size": (1280, 720)})
+config = camera.create_video_configuration(main={"format": "RGB888", "size": (1280, 720)})
 camera.configure(config)
 camera.start()
 time.sleep(1)
