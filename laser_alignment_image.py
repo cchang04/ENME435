@@ -16,9 +16,6 @@ camera.set_controls({
 camera.start()
 time.sleep(1)
 
-fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-out = cv2.VideoWriter("output.mp4", fourcc, 25, (1280, 720))
-
 print("Recording... press 'q' to stop")
 
 while True:
@@ -32,9 +29,6 @@ while True:
     for i in range(50, 1300, 50):
         cv2.line(image, (i, 0), (i, 720), (0, 255, 0), 3)
 
-    # then write annotated frame to file
-    out.write(image)
-
     # then display
     cv2.imshow("Image", image)
     key = cv2.waitKey(1) & 0xFF
@@ -43,6 +37,4 @@ while True:
         break
 
 camera.stop()
-out.release()
 cv2.destroyAllWindows()
-print("Saved to output.mp4")
