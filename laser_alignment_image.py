@@ -1,16 +1,16 @@
 from picamera2 import Picamera2
-from picamera2.encoders import H264Encoder
 import cv2
 import time
 
 camera = Picamera2()
 config = camera.create_video_configuration(main={"format": "BGR888", "size": (1280, 720)})
 camera.configure(config)
-
-encoder = H264Encoder(bitrate=10000000)
-camera.start_recording(encoder, "output.h264")
-
+camera.start()
 time.sleep(1)
+
+# Set up VideoWriter to save annotated frames
+fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+out = cv2.VideoWriter("output.mp4", fourcc, 25, (1280, 720))
 
 print("Recording... press 'q' to stop")
 
@@ -26,14 +26,8 @@ while True:
     for i in range(50, 1300, 50):
         cv2.line(image, (i, 0), (i, 720), (0, 150, 0), 3)
 
+    # write annotated frame to video file
+    out.write(image)
+
     cv2.imshow("Image", image)
     key = cv2.waitKey(1) & 0xFF
-
-    if key == ord("q"):
-        break
-
-camera.stop_recording()
-cv2.destroyAllWindows()
-print("Saved to output.h264")
-print("To convert to mp4, run:")
-print("ffmpeg -r 30 -i output.h264 output.mp4")
