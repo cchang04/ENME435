@@ -5,6 +5,14 @@ import time
 camera = Picamera2()
 config = camera.create_video_configuration(main={"format": "BGR888", "size": (1280, 720)})
 camera.configure(config)
+
+camera.set_controls({
+    "AwbEnable": False,
+    "ColourGains": (2.0, 1.0),
+    "ExposureTime": 5000,
+    "AnalogueGain": 1.0
+})
+
 camera.start()
 time.sleep(1)
 
