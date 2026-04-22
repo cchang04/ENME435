@@ -9,8 +9,8 @@ camera.configure(config)
 camera.set_controls({
     "AwbEnable": False,
     "ColourGains": (2.0, 1.0),
-    "ExposureTime": 5000,
-    "AnalogueGain": 1.0
+    "ExposureTime": 20000,
+    "AnalogueGain": 4.0
 })
 
 camera.start()
