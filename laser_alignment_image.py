@@ -6,17 +6,7 @@ camera = Picamera2()
 config = camera.create_video_configuration(main={"format": "BGR888", "size": (1280, 720)})
 camera.configure(config)
 camera.start()
-time.sleep(2)
-
-camera.set_controls({
-    "AwbEnable": False,
-    "AwbMode": 0,
-    "ColourGains": (3.0, 0.5),
-    "ExposureTime": 30000,
-    "AnalogueGain": 6.0
-})
-
-time.sleep(2)
+time.sleep(1)
 
 print("Press 'q' to stop")
 
